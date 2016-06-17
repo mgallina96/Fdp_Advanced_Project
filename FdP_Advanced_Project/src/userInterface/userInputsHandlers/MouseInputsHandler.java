@@ -2,7 +2,6 @@ package userInterface.userInputsHandlers;
 
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.SubScene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import userInterface.graphic3DHandler.View;

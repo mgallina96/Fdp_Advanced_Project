@@ -3,7 +3,6 @@ package userInterface.userInputsHandlers;
 import content.Arm;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.SubScene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.transform.Translate;
 import libraries.Cube;

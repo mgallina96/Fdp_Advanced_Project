@@ -3,8 +3,8 @@ package userInterface.guiHandler;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -18,12 +18,23 @@ import userInterface.userInputsHandlers.MouseInputsHandler;
 public class WindowHandler 
 {
 	private static final String WINDOW_TITLE = "Laparoscopy";
-
-	private static final int MAIN_WINDOW_WIDTH = 800;
-	private static final int MAIN_WINDOW_HEIGHT = 600;
-	private static final String INFO_BOX_TITLE = "Info paziente";
+	private static final double MAIN_WINDOW_WIDTH_RESOLUTION = 1600;
+	private static final double MAIN_WINDOW_HEIGHT_RESOLUTION = 900;
 	
-	private BorderPane root;
+	/**
+	 * The width of the 3d view window measured in pixels
+	 */
+	public static final double SCENE3D_WIDTH_RESOLUTION = MAIN_WINDOW_WIDTH_RESOLUTION * 2/3;
+	/**
+	 * The height of the 3d view window measured in pixels
+	 */
+	public static final double SCENE3D_HEIGHT_RESOLUTION = MAIN_WINDOW_HEIGHT_RESOLUTION;
+	
+	private static final String INFO_BOX_TITLE = "Info paziente";
+	private static final double INFO_BOX_WIDTH_RESOLUTION = MAIN_WINDOW_WIDTH_RESOLUTION - SCENE3D_WIDTH_RESOLUTION;
+	private static final double INFO_BOX_HEIGHT_RESOLUTION = MAIN_WINDOW_HEIGHT_RESOLUTION;
+	
+	private HBox root;
 	private Scene scene;
 	
 	/**
@@ -31,19 +42,27 @@ public class WindowHandler
 	 * 
 	 * It creates a window for the application.
 	 * 
-	 * @param window the primaryStage of the application
+	 * @param window the main stage of the application
+	 * @param patientInfo the list of attributes of the patient
+	 * @param scene3D the subscene containing the 3d view
+	 * @param keyboard the keyboard input handler
+	 * @param mouse the mouse input handler
+	 * @param camera the point of view of the 3d window
 	 */
-	public WindowHandler(Stage window, String[] patientInfo, SubScene scene3D, KeyboardInputsHandler keyboard, MouseInputsHandler mouse, View camera)
+	public WindowHandler(Stage window, String[] patientInfo, SubScene scene3D, KeyboardInputsHandler keyboard, 
+								MouseInputsHandler mouse, View camera)
 	{
-		this.root = new BorderPane();
+		this.root = new HBox();
 		
 		VBox lateralWindow = lateralWindow(patientInfo);
 		lateralWindow.setId("lateralWindow");
 		
-		root.setRight(lateralWindow);
-		root.setLeft(scene3D);
+//		scene3D.setWidth(SCENE3D_WIDTH_RESOLUTION);
+//		scene3D.setWidth(SCENE3D_HEIGHT_RESOLUTION);
 		
-		this.scene = new Scene(root, MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT);
+		root.getChildren().addAll(scene3D, lateralWindow);
+		
+		this.scene = new Scene(root, MAIN_WINDOW_WIDTH_RESOLUTION, MAIN_WINDOW_HEIGHT_RESOLUTION);
 		this.scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		
 		//Handle user inputs
@@ -65,6 +84,8 @@ public class WindowHandler
 	{
 		VBox box = new VBox();
 		VBox infoBox = infoBox(patientInfo);
+		
+		box.setPrefSize(INFO_BOX_WIDTH_RESOLUTION, INFO_BOX_HEIGHT_RESOLUTION);
 		
 		box.getChildren().add(infoBox);
 		
