@@ -1,19 +1,26 @@
 package userInterface.guiHandler;
 
 import javafx.scene.Scene;
+import javafx.scene.SubScene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import userInterface.graphic3DHandler.View;
+import userInterface.userInputsHandlers.KeyboardInputsHandler;
+import userInterface.userInputsHandlers.MouseInputsHandler;
+
 /**
  * @author Manuel Gallina
  */
 public class WindowHandler 
 {
-	private static final int MAIN_WINDOW_WIDTH = 1280;
-	private static final int MAIN_WINDOW_HEIGHT = 768;
+	private static final String WINDOW_TITLE = "Laparoscopy";
+
+	private static final int MAIN_WINDOW_WIDTH = 800;
+	private static final int MAIN_WINDOW_HEIGHT = 600;
 	private static final String INFO_BOX_TITLE = "Info paziente";
 	
 	private BorderPane root;
@@ -24,22 +31,31 @@ public class WindowHandler
 	 * 
 	 * It creates a window for the application.
 	 * 
-	 * @param primaryStage the primaryStage of the application
+	 * @param window the primaryStage of the application
 	 */
-	public WindowHandler(Stage primaryStage, String[] patientInfo)
+	public WindowHandler(Stage window, String[] patientInfo, SubScene scene3D, KeyboardInputsHandler keyboard, MouseInputsHandler mouse, View camera)
 	{
 		this.root = new BorderPane();
-		
-		this.scene = new Scene(root, MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT);
-		this.scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		
 		VBox lateralWindow = lateralWindow(patientInfo);
 		lateralWindow.setId("lateralWindow");
 		
 		root.setRight(lateralWindow);
+		root.setLeft(scene3D);
 		
-		primaryStage.setScene(scene);
-		primaryStage.show();
+		this.scene = new Scene(root, MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT);
+		this.scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		
+		//Handle user inputs
+		
+		keyboard.handleKeyboard(scene);
+	    mouse.handleMouse(scene, camera);
+	    
+	    ////////////////////
+		
+		window.setScene(scene);
+		window.setTitle(WINDOW_TITLE);
+		window.show();
 	}
 	
 	/*
