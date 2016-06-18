@@ -1,18 +1,52 @@
 
-#lateralWindow
+.label
+{
+	-fx-font-family: verdana;
+	-fx-text-fill: lightgray;
+	-fx-background-color: none;
+}
+
+.combo-box
+{
+
+}
+
+.separator .line
 {
 	-fx-border-color: black;
-	-fx-background-color: lightgrey;
+	-fx-border-width: 0.5;
 }
 
-#infoBoxTitle
-{
-	/*Font properties */
-	-fx-fill: black;
-	-fx-font-weight: bold;
+#lateralWindow
+{	
+	-fx-alignment: top-center;
+	-fx-border-color: black;
+	-fx-background-color: rgb(69,69,69);
 }
 
-#infoBoxLabels
+#infoBox
 {
-	-fx-fill: blue;
+	-fx-alignment: center-left;
+	-fx-padding: 10 10 10 10;
+}
+
+#infoBoxGrid
+{
+	-fx-border-color: black;
+	-fx-border-width: 1.0;
+	
+    -fx-background-radius: 0.5;
+    -fx-background-insets: 0.0 5.0 0.0 5.0;
+    -fx-padding: 5;
+    
+    -fx-hgap: 300;
+    -fx-vgap: 8;
+}
+
+#toolSelection
+{
+	-fx-background-radius: 0.5;
+    -fx-background-insets: 0.0 5.0 0.0 5.0;
+    -fx-padding: 5 10 10 10;
+    
 }
