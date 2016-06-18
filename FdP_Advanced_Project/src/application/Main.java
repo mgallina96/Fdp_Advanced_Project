@@ -4,6 +4,8 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import userInterface.guiHandler.WindowHandler;
 import java.util.ArrayList;
+
+import content.Patient;
 import javafx.application.Platform;
 import userInterface.graphic3DHandler.Transform;
 import userInterface.graphic3DHandler.View;
@@ -61,9 +63,16 @@ public class Main extends Application
 		    scene.setCamera(camera.getCamera());
 			scene.setFill(Paint.valueOf("white"));
 	        
+			//Provvisorio per test gui
+			
 	        String[] infoTest = new String[]{"Nome", "Cognome","Età", "Altezza", "Peso"};
+	        String[] dataTest = new String[]{"Mario", "Rossi","50", "1.70", "65"};
 	        
-	        new WindowHandler(window, infoTest, scene, keyboard, mouse, camera);
+	        Patient patient = new Patient(infoTest, dataTest);
+	        
+	        //////////////////////////////
+	        
+	        new WindowHandler(window, patient, scene, keyboard, mouse, camera);
 		}
 		catch(Exception e) 
 		{

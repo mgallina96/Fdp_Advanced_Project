@@ -1,13 +1,15 @@
-/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 
 #lateralWindow
 {
 	-fx-border-color: black;
+	-fx-background-color: lightgrey;
 }
 
 #infoBoxTitle
 {
-	-fx-fill: red;
+	/*Font properties */
+	-fx-fill: black;
+	-fx-font-weight: bold;
 }
 
 #infoBoxLabels

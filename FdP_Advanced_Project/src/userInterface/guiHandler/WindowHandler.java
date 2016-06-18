@@ -1,5 +1,6 @@
 package userInterface.guiHandler;
 
+import content.Patient;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
 import javafx.scene.control.Label;
@@ -49,16 +50,13 @@ public class WindowHandler
 	 * @param mouse the mouse input handler
 	 * @param camera the point of view of the 3d window
 	 */
-	public WindowHandler(Stage window, String[] patientInfo, SubScene scene3D, KeyboardInputsHandler keyboard, 
+	public WindowHandler(Stage window, Patient patient, SubScene scene3D, KeyboardInputsHandler keyboard, 
 								MouseInputsHandler mouse, View camera)
 	{
 		this.root = new HBox();
 		
-		VBox lateralWindow = lateralWindow(patientInfo);
+		VBox lateralWindow = lateralWindow(patient);
 		lateralWindow.setId("lateralWindow");
-		
-//		scene3D.setWidth(SCENE3D_WIDTH_RESOLUTION);
-//		scene3D.setWidth(SCENE3D_HEIGHT_RESOLUTION);
 		
 		root.getChildren().addAll(scene3D, lateralWindow);
 		
@@ -80,10 +78,10 @@ public class WindowHandler
 	/*
 	 * This method creates the lateral window with the patient's info box and the selection of the tools.
 	 */
-	private VBox lateralWindow(String[] patientInfo)
+	private VBox lateralWindow(Patient patient)
 	{
 		VBox box = new VBox();
-		VBox infoBox = infoBox(patientInfo);
+		VBox infoBox = infoBox(patient);
 		
 		box.setPrefSize(INFO_BOX_WIDTH_RESOLUTION, INFO_BOX_HEIGHT_RESOLUTION);
 		
@@ -95,7 +93,7 @@ public class WindowHandler
 	/*
 	 * This method creates the patient's info box.
 	 */
-	private VBox infoBox(String[] patientInfo)
+	private VBox infoBox(Patient patient)
 	{
 		VBox box = new VBox();
 		
@@ -103,14 +101,19 @@ public class WindowHandler
 		title.setId("infoBoxTitle");
 		
 		GridPane grid = new GridPane();
-		Label[] attributes = new Label[patientInfo.length];
+		Label[] attributes = new Label[patient.getPatientAttributes().length];
+		Label[] data = new Label[patient.getPatientInfo().length];
 		
-		for(int i = 0; i < patientInfo.length; i++)
+		for(int i = 0; i < patient.getPatientAttributes().length; i++)
 		{
-			attributes[i] = new Label(patientInfo[i]);
+			attributes[i] = new Label(patient.getPatientAttributes()[i]);
 			attributes[i].setId("infoBoxLabels");
 			
+			data[i] = new Label(patient.getPatientInfo()[i]);
+			data[i].setId("InfoBoxData");
+			
 			grid.add(attributes[i], 0, i);
+			grid.add(data[i], 1, i);
 		}
 		
 		box.getChildren().add(title);
