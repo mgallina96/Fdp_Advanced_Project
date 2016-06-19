@@ -21,7 +21,7 @@ public class Main extends Application
 {
 	private static final double SCENE3D_WIDTH_RESOLUTION = 800;
 
-	private static final double SCENE3D_HEIGHT_RESOLUTION = 600;
+//	private static final double SCENE3D_HEIGHT_RESOLUTION = 600;
 
 	private static final double AXES_RADIUS = 1;
 
@@ -31,7 +31,7 @@ public class Main extends Application
     final Transform world = new Transform();
     final Transform axis = new Transform();
     
-    final View camera = new View(world);
+//    final View camera = new View(world);
     final SubScene scene = new SubScene(root, SCENE3D_WIDTH_RESOLUTION, SCENE3D_HEIGHT_RESOLUTION, true, SceneAntialiasing.BALANCED);
     final KeyboardInputsHandler keyboard = new KeyboardInputsHandler(world);
     final MouseInputsHandler mouse = new MouseInputsHandler();
@@ -62,7 +62,7 @@ public class Main extends Application
 		    scene.setCamera(camera.getCamera());
 			scene.setFill(Paint.valueOf("white"));
 	        
-	        String[] infoTest = new String[]{"Nome", "Cognome","Et‡", "Altezza", "Peso"};
+	        String[] infoTest = new String[]{"Nome", "Cognome","Et√†", "Altezza", "Peso"};
 	        
 	        new WindowHandler(window, infoTest, scene, keyboard, mouse, camera);
 		}
