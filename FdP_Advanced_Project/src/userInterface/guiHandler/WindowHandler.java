@@ -19,7 +19,7 @@ public class WindowHandler
 {
 	private static final String WINDOW_TITLE = "Laparoscopy";
 
-	private static final int MAIN_WINDOW_WIDTH = 800;
+	private static final int MAIN_WINDOW_WIDTH = 900;
 	private static final int MAIN_WINDOW_HEIGHT = 600;
 	private static final String INFO_BOX_TITLE = "Info paziente";
 	

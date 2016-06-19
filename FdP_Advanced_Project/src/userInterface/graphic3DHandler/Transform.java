@@ -32,6 +32,7 @@
 
 package userInterface.graphic3DHandler;
 
+import javafx.geometry.Point3D;
 import javafx.scene.Group;
 import javafx.scene.transform.Scale;
 import javafx.scene.transform.Translate;
@@ -42,6 +43,7 @@ import javafx.scene.transform.Translate;
 
 public class Transform extends Group
 {
+	public static final double RAD_TO_DEG = 180.0 / Math.PI;
 	
 	public Translate position  = new Translate(0,0,0); 
 	public Rotation rotation = new Rotation(); 
@@ -51,6 +53,7 @@ public class Transform extends Group
     { 
         super(); 
         getTransforms().addAll(position, rotation.x, rotation.y, rotation.z, scale); 
+        reset();
     }
 
     public void setPosition(double x, double y, double z) 
@@ -128,6 +131,38 @@ public class Transform extends Group
     	
     	return distance;
     }
+    
+	/** 
+	 * This method changes the rotation axes to make the x-axis looking at the target position. 
+	 *  
+	 * @param target the target position 
+	 * @author Manuel Gallina 
+	 */ 
+	public void lookAt(Translate target) 
+	{ 
+		double xp = this.position.getX();	//X axis position. 
+		double yp = this.position.getY();	//Y axis position. 
+		double zp = this.position.getZ();	//Z axis position. 
+	
+		double xt = target.getX();	//X axis target position. 
+		double yt = target.getY();	//Y axis target position. 
+		double zt = target.getZ();	//Z axis target position. 
+	 	 
+	 	Point3D xAxisDirection = new Point3D(xp + (2 * zp - zt)/(2 * yp - yt), yp + (2 * zp -zt)/(2 * xp - xt), zt - (2 * yp - yt)/(2 * xp - xt) - (2 * xp -xt)/(2 * yp - yt)).normalize(); 
+	 	Point3D yAxisDirection = new Point3D(xt - xp, yt - yp, zt - zp).normalize(); 
+	 	//Point3D zAxisDirection = new Point3D(xp - 1/(xp - xt), yp + 1/(yp - yt), zp); 
+	 	 
+	 	this.rotation.x.setAxis(xAxisDirection); 
+	 	this.rotation.y.setAxis(yAxisDirection); 
+	 	//this.rotation.z.setAxis(zAxisDirection);
+		
+		double angle = Math.asin((target.getY() - position.getY()) / distance(this.position, target)) * RAD_TO_DEG;
+		
+		if(target.getX() < position.getX())
+			angle = 180.0 - angle;
+		
+	 	rotation.setZ(angle);
+	} 
 
     @Override 
     public String toString() 

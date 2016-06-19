@@ -12,6 +12,7 @@ public class View
 	private static final double CAMERA_NEAR_CLIP = 0.1;
 	private static final double CAMERA_FAR_CLIP = 10000.0;
 	private static final double CAMERA_INITIAL_DISTANCE = 500;
+	private static final double PIVOT_INITIAL_DISTANCE = 200;
 	
 	private static final double CAMERA_INITIAL_Y_ANGLE = 0.0;
 	private static final double CAMERA_INITIAL_X_ANGLE = -90.0;
@@ -21,27 +22,37 @@ public class View
 	private static final double PIVOT_INITIAL_X_ANGLE = 0.0;
 	private static final double PIVOT_INITIAL_Z_ANGLE = 0.0;
 	
-	private static final double CAMERA_SPEED = 5;
+	private static final double CAMERA_SPEED = 0.5;
 	private static final double CAMERA_ROTATION_SPEED = 0.2;
-	private static final double CAMERA_ZOOM_SPEED = 50;
+	private static final double CAMERA_ZOOM_SPEED = 5;
 	
-	private static final double MAX_HORIZONTAL_MOVEMENT = 1000.0;
+	private static final double MAX_HORIZONTAL_MOVEMENT = 500.0;
 	private static final double MAX_ROTATION_ANGLE = 90.0;
 	private static final double MIN_ROTATION_ANGLE = 0.0;
-	private static final double MAX_ZOOM_OUT_DISTANCE = 20000.0;
+	private static final double MAX_ZOOM_OUT_DISTANCE = 800.0;
 	private static final double MIN_ZOOM_IN_DISTANCE = 200.0;
 
 	final PerspectiveCamera camera = new PerspectiveCamera(true);
 	public final Transform pivot = new Transform();
 	public final Transform pivot2 = new Transform();
 	    
-    
+    /**
+     * Returns the camera.
+     * 
+     * @return
+     */
 	public PerspectiveCamera getCamera()
 	{
 		return camera;
 	}
 
-	public void buildCamera(Group parent) 
+	
+	/**
+	 * The constructor.
+	 * 
+	 * @param parent
+	 */
+	public View(Group parent) 
 	{
 		resetCamera();
         
@@ -69,6 +80,8 @@ public class View
         pivot2.rotation.setZ(CAMERA_INITIAL_Z_ANGLE);
         
         pivot2.position.setY(-CAMERA_INITIAL_DISTANCE);
+        
+        pivot.position.setY(PIVOT_INITIAL_DISTANCE);
 	}
 	
 	/**
