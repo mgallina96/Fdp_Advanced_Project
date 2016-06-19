@@ -21,11 +21,11 @@ public class View
 	private static final double PIVOT_INITIAL_X_ANGLE = 0.0;
 	private static final double PIVOT_INITIAL_Z_ANGLE = 0.0;
 	
-	private static final double CAMERA_SPEED = 5;
+	private static final double CAMERA_SPEED = 1;
 	private static final double CAMERA_ROTATION_SPEED = 0.2;
 	private static final double CAMERA_ZOOM_SPEED = 50;
 	
-	private static final double MAX_HORIZONTAL_MOVEMENT = 1000.0;
+	private static final double MAX_HORIZONTAL_MOVEMENT = 500.0;
 	private static final double MAX_ROTATION_ANGLE = 90.0;
 	private static final double MIN_ROTATION_ANGLE = 0.0;
 	private static final double MAX_ZOOM_OUT_DISTANCE = 20000.0;

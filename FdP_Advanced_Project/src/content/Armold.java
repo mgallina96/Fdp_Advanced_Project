@@ -1,8 +1,6 @@
 package content;
 
 import javafx.scene.shape.Cylinder;
-import javafx.scene.shape.Mesh;
-import javafx.scene.shape.TriangleMesh;
 import javafx.scene.transform.Translate;
 import userInterface.graphic3DHandler.Transform;
 

@@ -4,6 +4,8 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import userInterface.guiHandler.WindowHandler;
 import java.util.ArrayList;
+
+import content.Patient;
 import javafx.application.Platform;
 import userInterface.graphic3DHandler.Transform;
 import userInterface.graphic3DHandler.View;
@@ -19,10 +21,6 @@ import javafx.scene.shape.Box;
 
 public class Main extends Application 
 {
-	private static final double SCENE3D_WIDTH_RESOLUTION = 800;
-
-	private static final double SCENE3D_HEIGHT_RESOLUTION = 300;
-
 	private static final double AXES_RADIUS = 1;
 
 	private static final double AXES_LENGTH = 250;
@@ -32,7 +30,8 @@ public class Main extends Application
     final Transform axis = new Transform();
     
     final View camera = new View();
-    final SubScene scene = new SubScene(root, SCENE3D_WIDTH_RESOLUTION, SCENE3D_HEIGHT_RESOLUTION, true, SceneAntialiasing.BALANCED);
+    final SubScene scene = new SubScene(root, WindowHandler.SCENE3D_WIDTH_RESOLUTION,
+    										WindowHandler.SCENE3D_HEIGHT_RESOLUTION, true, SceneAntialiasing.BALANCED);
     final KeyboardInputsHandler keyboard = new KeyboardInputsHandler(world);
     final MouseInputsHandler mouse = new MouseInputsHandler();
     
@@ -64,9 +63,16 @@ public class Main extends Application
 		    scene.setCamera(camera.getCamera());
 			scene.setFill(Paint.valueOf("white"));
 	        
+			//Provvisorio per test gui
+			
 	        String[] infoTest = new String[]{"Nome", "Cognome","Età", "Altezza", "Peso"};
+	        String[] dataTest = new String[]{"Mario", "Rossi","50", "1.70", "65"};
 	        
-	        new WindowHandler(window, infoTest, scene, keyboard, mouse, camera);
+	        Patient patient = new Patient(infoTest, dataTest);
+	        
+	        //////////////////////////////
+	        
+	        new WindowHandler(window, patient, scene, keyboard, mouse, camera);
 		}
 		catch(Exception e) 
 		{
