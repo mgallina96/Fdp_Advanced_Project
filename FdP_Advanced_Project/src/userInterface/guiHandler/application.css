@@ -6,9 +6,19 @@
 	-fx-background-color: none;
 }
 
-.combo-box
-{
+.button{
+    -fx-background-insets: 0 0 0 0;
+    -fx-background-radius: 0.5;
+    -fx-padding: 3 30 3 30;
+    -fx-text-fill: black;
+}
 
+
+.combo-box-base
+{
+	-fx-background-radius: 0.5;
+    -fx-background-insets: 5 0 5 0;
+    -fx-padding: 2;
 }
 
 .separator .line
@@ -38,9 +48,6 @@
     -fx-background-radius: 0.5;
     -fx-background-insets: 0.0 5.0 0.0 5.0;
     -fx-padding: 5;
-    
-    -fx-hgap: 300;
-    -fx-vgap: 8;
 }
 
 #toolSelection
@@ -48,5 +55,20 @@
 	-fx-background-radius: 0.5;
     -fx-background-insets: 0.0 5.0 0.0 5.0;
     -fx-padding: 5 10 10 10;
-    
+}
+
+#toolSelectionGrid
+{
+	-fx-border-color: black;
+	-fx-border-width: 1.0;
+	
+    -fx-background-radius: 0.5;
+    -fx-background-insets: 0.0 5.0 0.0 5.0;
+    -fx-padding: 5;
+}
+
+#tool
+{
+	-fx-pref-width: 200.0;
+	-fx-pref-height: 8.0;
 }

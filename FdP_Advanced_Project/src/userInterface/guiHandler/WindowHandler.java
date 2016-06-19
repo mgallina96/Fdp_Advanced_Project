@@ -5,9 +5,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
@@ -26,7 +28,7 @@ import userInterface.userInputsHandlers.MouseInputsHandler;
 public class WindowHandler 
 {
 	private static final String WINDOW_TITLE = "Laparoscopy";
-	private static final double MAIN_WINDOW_WIDTH_RESOLUTION = 1600;
+	private static final double MAIN_WINDOW_WIDTH_RESOLUTION = 1440;
 	private static final double MAIN_WINDOW_HEIGHT_RESOLUTION = 900;
 	
 	/**
@@ -38,11 +40,19 @@ public class WindowHandler
 	 */
 	public static final double SCENE3D_HEIGHT_RESOLUTION = MAIN_WINDOW_HEIGHT_RESOLUTION;
 	
-	private static final String INFO_BOX_TITLE = "Info paziente";
+	private static final String INFO_BOX_TITLE = "Informazioni paziente";
 	private static final double INFO_BOX_WIDTH_RESOLUTION = MAIN_WINDOW_WIDTH_RESOLUTION - SCENE3D_WIDTH_RESOLUTION;
 	private static final double INFO_BOX_HEIGHT_RESOLUTION = MAIN_WINDOW_HEIGHT_RESOLUTION;
 	
+	private static final double INFO_BOX_GRID_VGAP = 8;
+	private static final double INFO_BOX_GRID_HGAP = INFO_BOX_WIDTH_RESOLUTION * 2 / 3 - 10;
+		
 	private static final double SEPARATOR_MAX_WIDTH = INFO_BOX_WIDTH_RESOLUTION -20;
+	
+	private static final String TOOL_SELECTION_TITLE = "Selezione strumento";
+	
+	private static final double TOOL_GRID_HGAP = INFO_BOX_WIDTH_RESOLUTION / 4 + 20;
+	private static final double TOOL_GRID_VGAP = 0;
 	
 	private HBox root;
 	private Scene scene;
@@ -65,7 +75,7 @@ public class WindowHandler
 		this.root = new HBox();
 		
 		VBox lateralWindow = lateralWindow(patient);
-		lateralWindow.setId("lateralWindow");
+			lateralWindow.setId("lateralWindow");
 		
 		root.getChildren().addAll(scene3D, lateralWindow);
 		
@@ -107,7 +117,23 @@ public class WindowHandler
 		VBox toolSelection = toolSelection();
 			toolSelection.setId("toolSelection");
 		
-		box.getChildren().addAll(infoBox, separator, toolSelection);
+		Separator separator2 = new Separator();
+			separator2.setId("separator");
+			separator2.setOrientation(Orientation.HORIZONTAL);
+			separator2.setMaxWidth(SEPARATOR_MAX_WIDTH);
+			separator2.setHalignment(HPos.CENTER);
+			separator2.setValignment(VPos.CENTER);
+			
+			
+		HBox buttonBox = new HBox();
+			buttonBox.setSpacing(30);
+			buttonBox.setAlignment(Pos.BASELINE_CENTER);
+		Button start = new Button("Start");
+		Button stop = new Button("Stop");
+		
+		buttonBox.getChildren().addAll(start, stop);
+			
+		box.getChildren().addAll(infoBox, separator, toolSelection, separator2, buttonBox);
 		
 		return box;
 	}
@@ -123,6 +149,9 @@ public class WindowHandler
 		
 		GridPane grid = new GridPane();
 			grid.setId("infoBoxGrid");
+			grid.setHgap(INFO_BOX_GRID_HGAP);
+			grid.setVgap(INFO_BOX_GRID_VGAP);
+	
 		
 		Label[] attributes = new Label[patient.getPatientAttributes().length];
 		Label[] data = new Label[patient.getPatientInfo().length];
@@ -146,24 +175,33 @@ public class WindowHandler
 	{
 		VBox box = new VBox();
 	
-		Label title = new Label(INFO_BOX_TITLE);
+		Label title = new Label(TOOL_SELECTION_TITLE);
 	
 		GridPane grid = new GridPane();
-			grid.setId("infoBoxGrid");
+			grid.setId("toolSelectionGrid");
+			grid.setHgap(TOOL_GRID_HGAP);
+			grid.setVgap(TOOL_GRID_VGAP);
 	
 		ObservableList<String> options = 
 			    FXCollections.observableArrayList(
-			        "Option 1",
-			        "Option 2",
-			        "Option 3"
+			        "Pinza",
+			        "Bisturi",
+			        "Aspiratore"
 			    );
 
 		
 		ComboBox<String> tool1 = new ComboBox<String>(options);
+			tool1.setId("tool");
 		ComboBox<String> tool2 = new ComboBox<String>(options);
+			tool2.setId("tool");
 		
-		grid.add(tool1, 0, 0);
-		grid.add(tool2, 0, 1);
+		Label selection1 = new Label("Strumento dx");
+		Label selection2 = new Label("Strumento sx");
+		
+		grid.add(selection1, 0, 0);
+		grid.add(selection2, 0, 1);
+		grid.add(tool1, 1, 0);
+		grid.add(tool2, 1, 1);
 		
 		box.getChildren().addAll(title, grid);
 		
