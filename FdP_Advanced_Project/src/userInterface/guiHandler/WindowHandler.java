@@ -28,8 +28,11 @@ import userInterface.userInputsHandlers.MouseInputsHandler;
 public class WindowHandler 
 {
 	private static final String WINDOW_TITLE = "Laparoscopy";
+
 	private static final double MAIN_WINDOW_WIDTH_RESOLUTION = 1440;
 	private static final double MAIN_WINDOW_HEIGHT_RESOLUTION = 900;
+
+	private static final String INFO_BOX_TITLE = "Info paziente";
 	
 	/**
 	 * The width of the 3d view window measured in pixels
@@ -40,7 +43,6 @@ public class WindowHandler
 	 */
 	public static final double SCENE3D_HEIGHT_RESOLUTION = MAIN_WINDOW_HEIGHT_RESOLUTION;
 	
-	private static final String INFO_BOX_TITLE = "Informazioni paziente";
 	private static final double INFO_BOX_WIDTH_RESOLUTION = MAIN_WINDOW_WIDTH_RESOLUTION - SCENE3D_WIDTH_RESOLUTION;
 	private static final double INFO_BOX_HEIGHT_RESOLUTION = MAIN_WINDOW_HEIGHT_RESOLUTION;
 	

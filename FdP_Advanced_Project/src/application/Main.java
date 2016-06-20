@@ -29,7 +29,7 @@ public class Main extends Application
     final Transform world = new Transform();
     final Transform axis = new Transform();
     
-    final View camera = new View();
+    final View camera = new View(world);
     final SubScene scene = new SubScene(root, WindowHandler.SCENE3D_WIDTH_RESOLUTION,
     										WindowHandler.SCENE3D_HEIGHT_RESOLUTION, true, SceneAntialiasing.BALANCED);
     final KeyboardInputsHandler keyboard = new KeyboardInputsHandler(world);
@@ -43,8 +43,6 @@ public class Main extends Application
 		try 
 		{
 			root.getChildren().add(world);
-			
-	        camera.buildCamera(world);
 	        
 	        //////////////////////////Awake
 	        

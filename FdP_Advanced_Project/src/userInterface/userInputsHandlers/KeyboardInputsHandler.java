@@ -4,8 +4,8 @@ import content.Arm;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.shape.Sphere;
 import javafx.scene.transform.Translate;
-import libraries.Cube;
 import userInterface.graphic3DHandler.Transform;
 
 /**
@@ -31,12 +31,13 @@ public class KeyboardInputsHandler
 	private boolean escape;
 	private boolean reset;
 	
-	Cube c = new Cube();
+	Translate leftTarget = new Translate(0,100,0);
+	Translate rightTarget = new Translate(0,100,0);
 	
-	Translate start = new Translate(0,0,0);
-	Translate target = new Translate(100,100,100);
+	Arm leftArm = new Arm(leftTarget, 100, 100);
+	Arm rightArm = new Arm(rightTarget, 100, 100);
 	
-	Arm arm = new Arm(start, target, 100, 100);
+	Sphere point = new Sphere(10);
 	
 	/**
 	 * @return the leftXAxis
@@ -102,7 +103,6 @@ public class KeyboardInputsHandler
 		return reset;
 	}
 
-	
 	/**
 	 * Default constructor.
 	 */
@@ -110,7 +110,9 @@ public class KeyboardInputsHandler
 	{
 		reset();
 		
-		parent.getChildren().add(arm.upperArm);
+		parent.getChildren().add(leftArm.upperArm);
+		parent.getChildren().add(rightArm.upperArm);
+		parent.getChildren().add(point);
 	}
 	
 	public void handleKeyboard(Scene scene) 
@@ -149,6 +151,7 @@ public class KeyboardInputsHandler
                     	break;
                     case E:
                     	leftZAxis = 1;
+                    	break;
                     case I:
                     	rightYAxis = 1;
                         break;
@@ -166,13 +169,19 @@ public class KeyboardInputsHandler
                     	break;
                     case O:
                     	rightZAxis = 1;
+                    	break;
                     default:
                     	event.consume();
                     	reset();
                     	break;
                 }
                 
-                arm.moveTarget(leftXAxis, leftYAxis, leftZAxis);
+                leftArm.moveTarget(leftXAxis, leftYAxis, leftZAxis);
+                rightArm.moveTarget(rightXAxis, rightYAxis, rightZAxis);
+                
+                point.setTranslateX(leftArm.getTarget().getX());
+                point.setTranslateY(leftArm.getTarget().getY());
+                point.setTranslateZ(leftArm.getTarget().getZ());
                 
                 reset();
             }

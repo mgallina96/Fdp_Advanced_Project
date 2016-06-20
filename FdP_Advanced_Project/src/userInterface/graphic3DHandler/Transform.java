@@ -42,6 +42,7 @@ import javafx.scene.transform.Translate;
 
 public class Transform extends Group
 {
+	public static final double RAD_TO_DEG = 180.0 / Math.PI;
 	
 	public Translate position  = new Translate(0,0,0); 
 	public Rotation rotation = new Rotation(); 
@@ -51,6 +52,7 @@ public class Transform extends Group
     { 
         super(); 
         getTransforms().addAll(position, rotation.x, rotation.y, rotation.z, scale); 
+        reset();
     }
 
     public void setPosition(double x, double y, double z) 
