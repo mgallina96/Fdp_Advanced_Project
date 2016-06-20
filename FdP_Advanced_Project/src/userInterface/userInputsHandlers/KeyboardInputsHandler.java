@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Sphere;
 import javafx.scene.transform.Translate;
+import javafx.stage.Stage;
 import userInterface.graphic3DHandler.Transform;
 
 /**
@@ -124,27 +125,23 @@ public class KeyboardInputsHandler
                 switch (event.getCode()) {
                     case ESCAPE:
                     	escape = true;
-                    	System.out.println("escape");
+                    	Stage window = (Stage)scene.getWindow();
+                    	window.close();
                         break;
                     case R:
                     	reset = true;
-                    	System.out.println("reset");
                         break;
                     case W:
                     	leftYAxis = 1;
-                    	System.out.println("W");
                         break;
                     case A:
                     	leftXAxis = -1;
-                    	System.out.println("A");
                         break;
                     case S:
                     	leftYAxis = -1;
-                    	System.out.println("S");
                         break;
                     case D:
                     	leftXAxis = 1;
-                    	System.out.println("D");
                         break;
                     case Q:
                     	leftZAxis = -1;

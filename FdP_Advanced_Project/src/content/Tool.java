@@ -1,5 +1,7 @@
 package content;
 
+import userInterface.graphic3DHandler.Transform;
+
 /**
  * @author Michele Franceschetti
  */
@@ -7,6 +9,8 @@ package content;
 public abstract class Tool 
 {
 	private String type;
+	
+	private Transform parent = new Transform();
 
 	/**
 	 * @return the type
@@ -24,5 +28,21 @@ public abstract class Tool
 		this.type = type;
 	}
 	
+	/**
+	 * @return The parent transform.
+	 */
+	public Transform getParent() 
+	{
+		return parent;
+	}
+
+	/**
+	 * @param parent The parent transform to set.
+	 */
+	public void setParent(Transform parent) 
+	{
+		this.parent = parent;
+	}
+
 	public abstract String act();
 }

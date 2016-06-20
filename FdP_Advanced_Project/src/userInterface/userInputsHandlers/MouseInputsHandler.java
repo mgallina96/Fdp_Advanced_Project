@@ -70,24 +70,18 @@ public class MouseInputsHandler
             }
         });
         
-        /*scene.setOnMouseDragged(new EventHandler<MouseEvent>() 
-        {
-            @Override 
-            public void handle(MouseEvent event) 
-            {
-                updateInputs(event, scene);
-            }
-        });*/
-        
-        scene.setOnMouseMoved(new EventHandler<MouseEvent>() 
+        scene.setOnMouseDragged(new EventHandler<MouseEvent>() 
         {
             @Override 
             public void handle(MouseEvent event) 
             {
                 updateInputs(event, scene);
                 
-                camera.translateCamera(deltaMousePosition[0]);
-                camera.rotateCamera(deltaMousePosition[1]);
+                if(event.isMiddleButtonDown())
+                {
+                	camera.translateCamera(deltaMousePosition[0]);
+                	camera.rotateCamera(deltaMousePosition[1]);
+                }
             }
         });
         
@@ -116,32 +110,22 @@ public class MouseInputsHandler
         deltaMousePosition[0] = (mousePosition[0] - lastMousePosition[0]); 
         deltaMousePosition[1] = (mousePosition[1] - lastMousePosition[1]);
         
-        //if(deltaMousePosition[0] != 0)
-        	//System.out.println("Mouse moved horizontally");
-
-        //if(deltaMousePosition[1] != 0)
-        	//System.out.println("Mouse moved vertically");
-
         if(event.isPrimaryButtonDown())
 		{
 			setLeftButtonPressed(true);
-			System.out.println("Left Pressed");
 		}
         else
         {
         	setLeftButtonPressed(false);
-        	System.out.println("Left Released");
         }
 		
 		if(event.isSecondaryButtonDown())
 		{
 			setRightButtonPressed(true);
-			System.out.println("Right Pressed");
 		}
 		else
 		{
 			setRightButtonPressed(false);
-        	System.out.println("Right Released");
 		}
 	}
 }
