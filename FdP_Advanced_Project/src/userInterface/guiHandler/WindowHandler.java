@@ -29,8 +29,8 @@ public class WindowHandler
 {
 	private static final String WINDOW_TITLE = "Laparoscopy";
 
-	private static final double MAIN_WINDOW_WIDTH_RESOLUTION = 1440;
-	private static final double MAIN_WINDOW_HEIGHT_RESOLUTION = 900;
+	private static final double MAIN_WINDOW_WIDTH_RESOLUTION = 1024;
+	private static final double MAIN_WINDOW_HEIGHT_RESOLUTION = 768;
 
 	private static final String INFO_BOX_TITLE = "Info paziente";
 	
@@ -47,13 +47,13 @@ public class WindowHandler
 	private static final double INFO_BOX_HEIGHT_RESOLUTION = MAIN_WINDOW_HEIGHT_RESOLUTION;
 	
 	private static final double INFO_BOX_GRID_VGAP = 8;
-	private static final double INFO_BOX_GRID_HGAP = INFO_BOX_WIDTH_RESOLUTION * 2 / 3 - 10;
+	private static final double INFO_BOX_GRID_HGAP = INFO_BOX_WIDTH_RESOLUTION * 2 / 3 - 50;
 		
-	private static final double SEPARATOR_MAX_WIDTH = INFO_BOX_WIDTH_RESOLUTION -20;
+	private static final double SEPARATOR_MAX_WIDTH = INFO_BOX_WIDTH_RESOLUTION - 20;
 	
 	private static final String TOOL_SELECTION_TITLE = "Selezione strumento";
 	
-	private static final double TOOL_GRID_HGAP = INFO_BOX_WIDTH_RESOLUTION / 4 + 20;
+	private static final double TOOL_GRID_HGAP = INFO_BOX_WIDTH_RESOLUTION / 4 - 10;
 	private static final double TOOL_GRID_VGAP = 0;
 	
 	private HBox root;
